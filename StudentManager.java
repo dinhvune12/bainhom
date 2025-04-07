@@ -78,7 +78,7 @@ public class StudentManager {
         panel.add(updateButton);
        
         panel.add(searchLabel);
-        panel.add(searchField);
+        //cc 3 m
         panel.add(searchButton);
 
         // Thêm bảng vào cửa sổ
