@@ -17,7 +17,7 @@ public class StudentManager {
         frame = new JFrame("Quản Lý Sinh Viên");
 
         // Tạo các trường nhập liệu và nhãn
-        JLabel nameLabel = new JLabel("Tên:");
+        JLabel nameLabel = new JLabel("Nhap:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
         JLabel searchLabel = new JLabel("Tìm kiếm:");
