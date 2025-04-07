@@ -1,26 +1,10 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-// khoadeptraivl
-=======
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
->>>>>>> c978a2c601409ad5d9270ee2812e9b6720e74615
-=======
-//vu dep trai qua
-lkkkk
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
- main
->>>>>>> dd9054cd3d3c00ea2838820bfbdead47f44465f6
-=======
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
->>>>>>> a46984d2f43acc2c34215590f05558fe20ffa1e4
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -44,7 +28,7 @@ public class StudentManager {
         searchField = new JTextField(20);
 
         // Tạo các nút chức năng
-   
+        JButton addButton = new JButton("Thêm Sinh Viên");
 
 
         // Tạo bảng để hiển thị danh sách sinh viên
@@ -53,7 +37,13 @@ public class StudentManager {
         studentTable = new JTable(tableModel);
 
         // Lắng nghe sự kiện khi nhấn nút "Thêm Sinh Viên"
-    
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addStudent();
+            }
+        });
+
         // Lắng nghe sự kiện khi nhấn nút "Sửa"
  
 
@@ -69,7 +59,7 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
-
+        panel.add(addButton);
 
 
 
@@ -88,7 +78,34 @@ public class StudentManager {
         frame.setVisible(true);
     }
 
+    private void addStudent() {
+        String name = nameField.getText();
+        String ageStr = ageField.getText();
+        String className = classField.getText();
 
+        if (name.isEmpty() || ageStr.isEmpty() || className.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        try {
+            int age = Integer.parseInt(ageStr);
+            Student student = new Student(name, age, className);
+            studentList.add(student);
+
+            // Cập nhật bảng
+Object[] row = {student.getName(), student.getAge(), student.getClassName()};
+            tableModel.addRow(row);
+
+            // Xóa dữ liệu trong các trường nhập
+            nameField.setText("");
+            ageField.setText("");
+            classField.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Tuổi phải là một số hợp lệ!");
+        }
+    }
 
    
 
