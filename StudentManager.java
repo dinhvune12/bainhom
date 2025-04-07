@@ -1,9 +1,9 @@
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class StudentManager {
     private JFrame frame;
@@ -30,7 +30,7 @@ public class StudentManager {
         // Tạo các nút chức năng
         JButton addButton = new JButton("Thêm Sinh Viên");
         JButton updateButton = new JButton("Sửa");
-        JButton deleteButton = new JButton("Xoá");
+        
         JButton searchButton = new JButton("Tìm kiếm");
 
         // Tạo bảng để hiển thị danh sách sinh viên
@@ -55,12 +55,7 @@ public class StudentManager {
         });
 
         // Lắng nghe sự kiện khi nhấn nút "Xoá"
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteStudent();
-            }
-        });
+
 
         // Lắng nghe sự kiện khi nhấn nút "Tìm kiếm"
         searchButton.addActionListener(new ActionListener() {
@@ -81,7 +76,7 @@ public class StudentManager {
         panel.add(classField);
         panel.add(addButton);
         panel.add(updateButton);
-        panel.add(deleteButton);
+       
         panel.add(searchLabel);
         panel.add(searchField);
         panel.add(searchButton);
