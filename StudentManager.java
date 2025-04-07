@@ -3,12 +3,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
 // khoadeptraivl
 =======
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 >>>>>>> c978a2c601409ad5d9270ee2812e9b6720e74615
+=======
+//vu dep trai qua
+lkkkk
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+ main
+>>>>>>> dd9054cd3d3c00ea2838820bfbdead47f44465f6
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
