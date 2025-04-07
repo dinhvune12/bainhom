@@ -55,7 +55,12 @@ public class StudentManager {
         });
 
         // Lắng nghe sự kiện khi nhấn nút "Xoá"
-
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteStudent();
+            }
+        });
 
         // Lắng nghe sự kiện khi nhấn nút "Tìm kiếm"
         searchButton.addActionListener(new ActionListener() {
@@ -160,7 +165,16 @@ public class StudentManager {
         }
     }
 
+    private void deleteStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để xóa!");
+            return;
+        }
 
+        studentList.remove(selectedRow);
+        tableModel.removeRow(selectedRow);
+    }
 
     private void searchStudent() {
         String searchText = searchField.getText().toLowerCase();
