@@ -2,12 +2,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-//vu dep trai qua
-// nhanle
-lkkkk
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
- main
+
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -20,10 +17,10 @@ public class StudentManager {
         frame = new JFrame("Quản Lý Sinh Viên");
 
         // Tạo các trường nhập liệu và nhãn
-        JLabel nameLabel = new JLabel("Nhap:");
+        JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-        JLabel searchLabel = new JLabel("Tìm kiếm:");
+    
 
         nameField = new JTextField(20);
         ageField = new JTextField(20);
@@ -31,23 +28,17 @@ public class StudentManager {
         searchField = new JTextField(20);
 
         // Tạo các nút chức năng
-        JButton addButton = new JButton("Thêm Sinh Viên");
+
         JButton updateButton = new JButton("Sửa");
-        
-        JButton searchButton = new JButton("Tìm kiếm");
+       
 
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
 
-        // Lắng nghe sự kiện khi nhấn nút "Thêm Sinh Viên"
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addStudent();
-            }
-        });
+
+ 
 
         // Lắng nghe sự kiện khi nhấn nút "Sửa"
         updateButton.addActionListener(new ActionListener() {
@@ -57,16 +48,8 @@ public class StudentManager {
             }
         });
 
-        // Lắng nghe sự kiện khi nhấn nút "Xoá"
 
 
-        // Lắng nghe sự kiện khi nhấn nút "Tìm kiếm"
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchStudent();
-            }
-        });
 
         // Cấu hình giao diện
         JPanel panel = new JPanel();
@@ -77,12 +60,11 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
-        panel.add(addButton);
+
         panel.add(updateButton);
+
        
-        panel.add(searchLabel);
-        //cc 3 m
-        panel.add(searchButton);
+
 
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -96,35 +78,7 @@ public class StudentManager {
         frame.setVisible(true);
     }
 
-    private void addStudent() {
-        String name = nameField.getText();
-        String ageStr = ageField.getText();
-        String className = classField.getText();
-
-        if (name.isEmpty() || ageStr.isEmpty() || className.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin!");
-            return;
-        }
-
-        try {
-            int age = Integer.parseInt(ageStr);
-            Student student = new Student(name, age, className);
-            studentList.add(student);
-
-            // Cập nhật bảng
-            Object[] row = {student.getName(), student.getAge(), student.getClassName()};
-            tableModel.addRow(row);
-
-            // Xóa dữ liệu trong các trường nhập
-            nameField.setText("");
-            ageField.setText("");
-            classField.setText("");
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame, "Tuổi phải là một số hợp lệ!");
-        }
-    }
-
+    
     private void updateStudent() {
         int selectedRow = studentTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -143,8 +97,8 @@ public class StudentManager {
 
         try {
             int age = Integer.parseInt(ageStr);
-            Student student = studentList.get(selectedRow);
-            student.setName(name);
+Student student = studentList.get(selectedRow);
+student.setName(name);
             student.setAge(age);
             student.setClassName(className);
 
@@ -163,33 +117,7 @@ public class StudentManager {
         }
     }
 
-    private void deleteStudent() {
-        int selectedRow = studentTable.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để xóa!");
-            return;
-        }
-
-        studentList.remove(selectedRow);
-        tableModel.removeRow(selectedRow);
-    }
-
-    private void searchStudent() {
-        String searchText = searchField.getText().toLowerCase();
-        if (searchText.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Vui lòng nhập từ khoá tìm kiếm!");
-            return;
-        }
-
-        for (int i = 0; i < studentList.size(); i++) {
-            Student student = studentList.get(i);
-            if (student.getName().toLowerCase().contains(searchText) || 
-                student.getClassName().toLowerCase().contains(searchText)) {
-                studentTable.setRowSelectionInterval(i, i); // Chọn dòng đầu tiên tìm được
-                break;
-            }
-        }
-    }
+   
 
     public static void main(String[] args) {
         new StudentManager();
