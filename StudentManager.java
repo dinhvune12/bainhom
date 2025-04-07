@@ -21,7 +21,7 @@ public class StudentManager {
         JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-
+    
 
         nameField = new JTextField(20);
         ageField = new JTextField(20);
@@ -30,6 +30,7 @@ public class StudentManager {
 
 
         // Tạo các nút chức năng
+
         JButton addButton = new JButton("Thêm Sinh Viên");
   
 
@@ -37,6 +38,9 @@ public class StudentManager {
         JButton deleteButton = new JButton("Xoá");
  
 
+
+        JButton updateButton = new JButton("Sửa");
+       
 
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
@@ -53,7 +57,16 @@ public class StudentManager {
         });
 
         // Lắng nghe sự kiện khi nhấn nút "Sửa"
+
  
+
+        // Lắng nghe sự kiện khi nhấn nút "Sửa"
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateStudent();
+            }
+        });
 
 
         
@@ -78,11 +91,12 @@ public class StudentManager {
         panel.add(classLabel);
         panel.add(classField);
 
+
+        panel.add(updateButton);
+
         panel.add(addButton);
 
-
-
-        panel.add(searchField);
+       
 
         panel.add(deleteButton);
 
@@ -103,7 +117,18 @@ public class StudentManager {
     }
 
 
+    
+    private void updateStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để sửa!");
+            return;
+        }
+
+
+
     private void addStudent() {
+
         String name = nameField.getText();
         String ageStr = ageField.getText();
         String className = classField.getText();
@@ -115,12 +140,24 @@ public class StudentManager {
 
         try {
             int age = Integer.parseInt(ageStr);
+
+Student student = studentList.get(selectedRow);
+student.setName(name);
+            student.setAge(age);
+            student.setClassName(className);
+
+            // Cập nhật bảng
+            tableModel.setValueAt(name, selectedRow, 0);
+            tableModel.setValueAt(age, selectedRow, 1);
+            tableModel.setValueAt(className, selectedRow, 2);
+
             Student student = new Student(name, age, className);
             studentList.add(student);
 
             // Cập nhật bảng
 Object[] row = {student.getName(), student.getAge(), student.getClassName()};
             tableModel.addRow(row);
+
 
             // Xóa dữ liệu trong các trường nhập
             nameField.setText("");
