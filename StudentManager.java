@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-//delete sinh viên - lần 2
+//detele sinh vien author Dang Nhan
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -27,8 +27,13 @@ public class StudentManager {
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
+<<<<<<< HEAD
   
 
+=======
+        // Tạo các nút chức năng
+     
+>>>>>>> 7faa67785d2dfb777b8e6c7161f426b539e6df51
 
         JButton deleteButton = new JButton("Xoá");
 
@@ -39,6 +44,7 @@ public class StudentManager {
         studentTable = new JTable(tableModel);
 
 
+<<<<<<< HEAD
         
 
         // Lắng nghe sự kiện khi nhấn nút "Xoá"
@@ -51,6 +57,9 @@ public class StudentManager {
 
  
 
+=======
+     
+>>>>>>> 7faa67785d2dfb777b8e6c7161f426b539e6df51
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -60,11 +69,16 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
+<<<<<<< HEAD
        
         panel.add(deleteButton);
 
        
 
+=======
+        panel.add(searchField);
+     
+>>>>>>> 7faa67785d2dfb777b8e6c7161f426b539e6df51
 
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -90,6 +104,7 @@ public class StudentManager {
             return;
         }
 
+<<<<<<< HEAD
         studentList.remove(selectedRow);
         tableModel.removeRow(selectedRow);
     }
@@ -100,6 +115,8 @@ public class StudentManager {
         new StudentManager();
     }
 }
+=======
+>>>>>>> 7faa67785d2dfb777b8e6c7161f426b539e6df51
 
 class Student {
     private String name;
