@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
+//detele sinh vien author Dang Nhan
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -27,8 +27,11 @@ public class StudentManager {
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
-        // Tạo các nút chức năng
+
+        JButton deleteButton = new JButton("Xoá");
+
         JButton addButton = new JButton("Thêm Sinh Viên");
+
 
 
         // Tạo bảng để hiển thị danh sách sinh viên
@@ -50,6 +53,18 @@ public class StudentManager {
 
 
 
+
+        // Lắng nghe sự kiện khi nhấn nút "Xoá"
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteStudent();
+            }
+        });
+
+ 
+
+
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -59,11 +74,21 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
+
+        panel.add(deleteButton);
+
+       
+
+
+        panel.add(searchField);
+     
+
         panel.add(addButton);
 
 
 
         panel.add(searchField);
+
 
 
         // Thêm bảng vào cửa sổ
@@ -77,6 +102,27 @@ public class StudentManager {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
+
+   
+
+        
+
+    
+    private void deleteStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để xóa!");
+            return;
+        }
+
+
+        studentList.remove(selectedRow);
+        tableModel.removeRow(selectedRow);
+    }
+
+    
+
 
     private void addStudent() {
         String name = nameField.getText();
@@ -109,10 +155,12 @@ Object[] row = {student.getName(), student.getAge(), student.getClassName()};
 
    
 
+
     public static void main(String[] args) {
         new StudentManager();
     }
 }
+
 
 class Student {
     private String name;
@@ -127,7 +175,7 @@ class Student {
 
     public String getName() {
         return name;
-    }
+}
 
     public void setName(String name) {
         this.name = name;
