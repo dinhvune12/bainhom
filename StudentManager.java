@@ -1,9 +1,9 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class StudentManager {
     private JFrame frame;
@@ -81,7 +81,6 @@ public class StudentManager {
         tableModel.removeRow(selectedRow);
     }
 
-
     public static void main(String[] args) {
         new StudentManager();
     }
@@ -122,5 +121,6 @@ class Student {
         this.className = className;
     }
 }
+
 
 
