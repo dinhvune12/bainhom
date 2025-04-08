@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-//detele sinh vien author Dang Nhan
+//detele sinh vien author Dang Nhan ok ok ok ok
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -15,40 +15,14 @@ public class StudentManager {
     public StudentManager() {
         studentList = new ArrayList<>();
         frame = new JFrame("Quản Lý Sinh Viên");
-
         // Tạo các trường nhập liệu và nhãn
         JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-
-
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         classField = new JTextField(20);
         searchField = new JTextField(20);
-
-
-
-    
-       
-
-     
- 
-
-
-
-
-
- 
-
-
-
- 
-
-
-
-
-
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -58,16 +32,7 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
-
-
-
-
         panel.add(searchField);
-
-
-
-
-
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
 
@@ -79,29 +44,10 @@ public class StudentManager {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
-   
-
-   
-
-
-        
-
-    
- 
-    
-
-
-
-   
-
-
     public static void main(String[] args) {
         new StudentManager();
     }
 }
-
-
 class Student {
     private String name;
     private int age;
