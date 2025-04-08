@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-//delete sinh vien
+
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -31,13 +31,19 @@ public class StudentManager {
 
 
         JButton deleteButton = new JButton("Xoá");
+        // Tạo các nút chức năng
+     
+        JButton searchButton = new JButton("Tìm kiếm");
 
+        JButton addButton = new JButton("Thêm Sinh Viên");
 
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
 
+        JButton updateButton = new JButton("Sửa");
+       
 
         
 
@@ -51,6 +57,42 @@ public class StudentManager {
 
  
 
+
+        // Tạo bảng để hiển thị danh sách sinh viên
+        String[] columnNames = {"Tên", "Tuổi", "Lớp"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        studentTable = new JTable(tableModel);
+
+        // Lắng nghe sự kiện khi nhấn nút "Thêm Sinh Viên"
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addStudent();
+            }
+        });
+
+        // Lắng nghe sự kiện khi nhấn nút "Tìm kiếm"
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchStudent();
+            }
+        });
+
+
+ 
+
+        // Lắng nghe sự kiện khi nhấn nút "Sửa"
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateStudent();
+            }
+        });
+
+
+
+
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -62,6 +104,18 @@ public class StudentManager {
         panel.add(classField);
        
         panel.add(deleteButton);
+
+
+        panel.add(searchField);
+        panel.add(searchButton);
+
+        panel.add(addButton);
+
+
+
+        panel.add(searchField);
+
+        panel.add(updateButton);
 
        
 
@@ -93,9 +147,74 @@ public class StudentManager {
         studentList.remove(selectedRow);
         tableModel.removeRow(selectedRow);
     }
+    private void addStudent() {
+
+    
+    private void updateStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để sửa!");
+            return;
+        }
+
+        String name = nameField.getText();
+        String ageStr = ageField.getText();
+        String className = classField.getText();
+
+        if (name.isEmpty() || ageStr.isEmpty() || className.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        try {
+            int age = Integer.parseInt(ageStr);
+            Student student = new Student(name, age, className);
+            studentList.add(student);
+
+            // Cập nhật bảng
+Object[] row = {student.getName(), student.getAge(), student.getClassName()};
+            tableModel.addRow(row);
+
+Student student = studentList.get(selectedRow);
+student.setName(name);
+            student.setAge(age);
+            student.setClassName(className);
+
+            // Cập nhật bảng
+            tableModel.setValueAt(name, selectedRow, 0);
+            tableModel.setValueAt(age, selectedRow, 1);
+            tableModel.setValueAt(className, selectedRow, 2);
+
+            // Xóa dữ liệu trong các trường nhập
+            nameField.setText("");
+            ageField.setText("");
+            classField.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Tuổi phải là một số hợp lệ!");
+        }
+    }
+
+   
 
     
 
+    private void searchStudent() {
+        String searchText = searchField.getText().toLowerCase();
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng nhập từ khoá tìm kiếm!");
+            return;
+        }
+
+        for (int i = 0; i < studentList.size(); i++) {
+            Student student = studentList.get(i);
+            if (student.getName().toLowerCase().contains(searchText) || 
+                student.getClassName().toLowerCase().contains(searchText)) {
+                studentTable.setRowSelectionInterval(i, i); // Chọn dòng đầu tiên tìm được
+                break;
+            }
+        }
+    }
     public static void main(String[] args) {
         new StudentManager();
     }
@@ -114,7 +233,7 @@ class Student {
 
     public String getName() {
         return name;
-}
+    }
 
     public void setName(String name) {
         this.name = name;
