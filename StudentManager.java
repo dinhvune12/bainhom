@@ -73,7 +73,7 @@ public class StudentManager {
 
         panel.add(searchLabel);
         panel.add(searchField);
-        panel.add(searchButton);
+
 
 
         // Thêm bảng vào cửa sổ
@@ -137,4 +137,3 @@ class Student {
         this.className = className;
     }
 }
-
