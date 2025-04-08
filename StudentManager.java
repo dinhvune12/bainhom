@@ -1,10 +1,14 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 //hihihi
+
+
+
+
+
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -27,14 +31,22 @@ public class StudentManager {
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
+
         // Tạo các nút chức năng
 
         JButton searchButton = new JButton("Tìm kiếm");
 
+
+ 
+
+
+
+     
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
+
 
 
         
@@ -46,6 +58,14 @@ public class StudentManager {
             }
         });
 
+      
+
+     
+
+        
+
+
+
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -56,9 +76,11 @@ public class StudentManager {
         panel.add(classLabel);
         panel.add(classField);
 
+
         panel.add(searchLabel);
         panel.add(searchField);
         panel.add(searchButton);
+
 
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -89,6 +111,12 @@ public class StudentManager {
             }
         }
     }
+
+
+   
+
+    
+
 
     public static void main(String[] args) {
         new StudentManager();
@@ -130,5 +158,4 @@ class Student {
         this.className = className;
     }
 }
-
 
