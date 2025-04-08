@@ -1,9 +1,11 @@
 import java.awt.*;
 import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-//xoa sinh vien dang nhan
+
+
 
 public class StudentManager {
     private JFrame frame;
@@ -26,6 +28,12 @@ public class StudentManager {
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
+        // Tạo các nút chức năng
+ 
+        JButton updateButton = new JButton("Sửa");
+ 
+
+
      
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
@@ -39,8 +47,6 @@ public class StudentManager {
         
 
 
-      
-       
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -67,8 +73,6 @@ public class StudentManager {
 
    
 
-    
-    
     
 
 
@@ -112,3 +116,4 @@ class Student {
         this.className = className;
     }
 }
+
