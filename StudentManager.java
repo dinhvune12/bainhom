@@ -24,7 +24,7 @@ public class StudentManager {
         JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-        JLabel searchLabel = new JLabel("Tìm kiếm:");
+
 
         nameField = new JTextField(20);
         ageField = new JTextField(20);
