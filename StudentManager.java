@@ -1,3 +1,7 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -23,12 +27,16 @@ public class StudentManager {
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
 
+
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
         // Tạo các nút chức năng
+     
+        JButton searchButton = new JButton("Tìm kiếm");
+
  
         JButton updateButton = new JButton("Sửa");
  
@@ -52,6 +60,12 @@ public class StudentManager {
 
         
 
+        // Lắng nghe sự kiện khi nhấn nút "Tìm kiếm"
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchStudent();
+
 
       
         // Lắng nghe sự kiện khi nhấn nút "Xoá"
@@ -71,6 +85,8 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
+        panel.add(searchField);
+        panel.add(searchButton);
         panel.add(updateButton);
        
 
@@ -87,6 +103,7 @@ public class StudentManager {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
 
    
 
@@ -142,6 +159,23 @@ public class StudentManager {
     }
 
 
+
+    private void searchStudent() {
+        String searchText = searchField.getText().toLowerCase();
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng nhập từ khoá tìm kiếm!");
+            return;
+        }
+
+        for (int i = 0; i < studentList.size(); i++) {
+            Student student = studentList.get(i);
+            if (student.getName().toLowerCase().contains(searchText) || 
+                student.getClassName().toLowerCase().contains(searchText)) {
+                studentTable.setRowSelectionInterval(i, i); // Chọn dòng đầu tiên tìm được
+                break;
+            }
+        }
+    }
     public static void main(String[] args) {
         new StudentManager();
     }
@@ -181,6 +215,10 @@ class Student {
     public void setClassName(String className) {
         this.className = className;
     }
+
 }
+
+}
+
 
 
