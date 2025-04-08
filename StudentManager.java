@@ -20,7 +20,7 @@ public class StudentManager {
         JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-
+    
 
         nameField = new JTextField(20);
         ageField = new JTextField(20);
@@ -30,6 +30,9 @@ public class StudentManager {
         // Tạo các nút chức năng
         JButton addButton = new JButton("Thêm Sinh Viên");
 
+
+        JButton updateButton = new JButton("Sửa");
+       
 
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
@@ -44,8 +47,16 @@ public class StudentManager {
             }
         });
 
-        // Lắng nghe sự kiện khi nhấn nút "Sửa"
+
  
+
+        // Lắng nghe sự kiện khi nhấn nút "Sửa"
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateStudent();
+            }
+        });
 
 
 
@@ -65,6 +76,10 @@ public class StudentManager {
 
         panel.add(searchField);
 
+        panel.add(updateButton);
+
+       
+
 
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -79,6 +94,15 @@ public class StudentManager {
     }
 
     private void addStudent() {
+
+    
+    private void updateStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để sửa!");
+            return;
+        }
+
         String name = nameField.getText();
         String ageStr = ageField.getText();
         String className = classField.getText();
@@ -96,6 +120,16 @@ public class StudentManager {
             // Cập nhật bảng
 Object[] row = {student.getName(), student.getAge(), student.getClassName()};
             tableModel.addRow(row);
+
+Student student = studentList.get(selectedRow);
+student.setName(name);
+            student.setAge(age);
+            student.setClassName(className);
+
+            // Cập nhật bảng
+            tableModel.setValueAt(name, selectedRow, 0);
+            tableModel.setValueAt(age, selectedRow, 1);
+            tableModel.setValueAt(className, selectedRow, 2);
 
             // Xóa dữ liệu trong các trường nhập
             nameField.setText("");
