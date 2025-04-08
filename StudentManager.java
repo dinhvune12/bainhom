@@ -72,7 +72,6 @@ public class StudentManager {
 
 
         panel.add(searchLabel);
-        panel.add(searchField);
 
 
 
