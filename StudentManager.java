@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-//xoa sinh vien dang nhan
-
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -33,8 +31,6 @@ public class StudentManager {
         JButton updateButton = new JButton("Sửa");
  
 
-        JButton deleteButton = new JButton("Xoá");
-
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
@@ -52,16 +48,6 @@ public class StudentManager {
 
         
 
-
-      
-        // Lắng nghe sự kiện khi nhấn nút "Xoá"
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteStudent();
-            }
-        });
-
         // Cấu hình giao diện
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2, 10, 10));
@@ -73,9 +59,6 @@ public class StudentManager {
         panel.add(classField);
         panel.add(updateButton);
        
-
-        panel.add(deleteButton);
-
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
 
@@ -129,18 +112,6 @@ public class StudentManager {
     }
 
     
-    
-    private void deleteStudent() {
-        int selectedRow = studentTable.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để xóa!");
-            return;
-        }
-
-        studentList.remove(selectedRow);
-        tableModel.removeRow(selectedRow);
-    }
-
 
     public static void main(String[] args) {
         new StudentManager();
@@ -182,5 +153,6 @@ class Student {
         this.className = className;
     }
 }
+
 
 
