@@ -1,7 +1,10 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -34,6 +37,8 @@ public class StudentManager {
         searchField = new JTextField(20);
 
         // Tạo các nút chức năng
+        JButton addButton = new JButton("Thêm Sinh Viên");
+
      
         JButton searchButton = new JButton("Tìm kiếm");
 
@@ -47,6 +52,16 @@ public class StudentManager {
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
+
+        // Lắng nghe sự kiện khi nhấn nút "Thêm Sinh Viên"
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addStudent();
+            }
+        });
+
+       
 
       
 
@@ -85,11 +100,10 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
+        panel.add(addButton);
         panel.add(searchField);
         panel.add(searchButton);
         panel.add(updateButton);
-       
-
         panel.add(deleteButton);
 
         // Thêm bảng vào cửa sổ
@@ -103,6 +117,8 @@ public class StudentManager {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
+    private void addStudent() {
 
 
    
@@ -125,6 +141,13 @@ public class StudentManager {
 
         try {
             int age = Integer.parseInt(ageStr);
+            Student student = new Student(name, age, className);
+            studentList.add(student);
+
+            // Cập nhật bảng
+            Object[] row = {student.getName(), student.getAge(), student.getClassName()};
+            tableModel.addRow(row);
+
             Student student = studentList.get(selectedRow);
             student.setName(name);
             student.setAge(age);
@@ -145,8 +168,7 @@ public class StudentManager {
         }
     }
 
-    
-    
+
     private void deleteStudent() {
         int selectedRow = studentTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -215,6 +237,9 @@ class Student {
     public void setClassName(String className) {
         this.className = className;
     }
+}
+
+
 
 }
 
