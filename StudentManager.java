@@ -28,9 +28,7 @@ public class StudentManager {
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
-        // Tạo các nút chức năng
- 
-        JButton updateButton = new JButton("Sửa");
+
  
 
 
