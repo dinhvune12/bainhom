@@ -20,7 +20,7 @@ public class StudentManager {
         JLabel nameLabel = new JLabel("Tên:");
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
-
+    
 
         nameField = new JTextField(20);
         ageField = new JTextField(20);
@@ -29,9 +29,8 @@ public class StudentManager {
 
         // Tạo các nút chức năng
 
-
+        JButton updateButton = new JButton("Sửa");
        
-
 
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
@@ -39,10 +38,17 @@ public class StudentManager {
         studentTable = new JTable(tableModel);
 
 
-
  
 
-        
+        // Lắng nghe sự kiện khi nhấn nút "Sửa"
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateStudent();
+            }
+        });
+
+
 
 
         // Cấu hình giao diện
@@ -54,6 +60,8 @@ public class StudentManager {
         panel.add(ageField);
         panel.add(classLabel);
         panel.add(classField);
+
+        panel.add(updateButton);
 
        
 
@@ -71,7 +79,45 @@ public class StudentManager {
     }
 
     
-    
+    private void updateStudent() {
+        int selectedRow = studentTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để sửa!");
+            return;
+        }
+
+        String name = nameField.getText();
+        String ageStr = ageField.getText();
+        String className = classField.getText();
+
+        if (name.isEmpty() || ageStr.isEmpty() || className.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        try {
+            int age = Integer.parseInt(ageStr);
+Student student = studentList.get(selectedRow);
+student.setName(name);
+            student.setAge(age);
+            student.setClassName(className);
+
+            // Cập nhật bảng
+            tableModel.setValueAt(name, selectedRow, 0);
+            tableModel.setValueAt(age, selectedRow, 1);
+            tableModel.setValueAt(className, selectedRow, 2);
+
+            // Xóa dữ liệu trong các trường nhập
+            nameField.setText("");
+            ageField.setText("");
+            classField.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Tuổi phải là một số hợp lệ!");
+        }
+    }
+
+   
 
     public static void main(String[] args) {
         new StudentManager();
