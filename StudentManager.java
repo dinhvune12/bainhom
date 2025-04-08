@@ -1,10 +1,10 @@
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-//xoa sinh vien dang nhan
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 public class StudentManager {
     private JFrame frame;
     private JTextField nameField, ageField, classField, searchField;
@@ -35,7 +35,7 @@ public class StudentManager {
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
 
-        // Lắng nghe sự kiện khi nhấn nút "Thêm Sinh Viên"
+     
       
         // Lắng nghe sự kiện khi nhấn nút "Xoá"
         deleteButton.addActionListener(new ActionListener() {
