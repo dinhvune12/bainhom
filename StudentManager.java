@@ -1,9 +1,16 @@
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+
+//dangnhan
+
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
 
 public class StudentManager {
     private JFrame frame;
@@ -21,29 +28,44 @@ public class StudentManager {
         JLabel ageLabel = new JLabel("Tuổi:");
         JLabel classLabel = new JLabel("Lớp:");
 
+
         nameField = new JTextField(20);
         ageField = new JTextField(20);
         classField = new JTextField(20);
         searchField = new JTextField(20);
 
+
         // Tạo các nút chức năng
 
-        JButton deleteButton = new JButton("Xoá");
+    
 
+
+ 
+
+
+
+     
         // Tạo bảng để hiển thị danh sách sinh viên
         String[] columnNames = {"Tên", "Tuổi", "Lớp"};
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
 
+<<<<<<< HEAD
      
+=======
+
+
+        
+
+
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
       
-        // Lắng nghe sự kiện khi nhấn nút "Xoá"
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteStudent();
-            }
-        });
+
+     
+
+        
+
+
 
         // Cấu hình giao diện
         JPanel panel = new JPanel();
@@ -55,7 +77,10 @@ public class StudentManager {
         panel.add(classLabel);
         panel.add(classField);
 
-        panel.add(deleteButton);
+
+        panel.add(searchLabel);
+
+
 
         // Thêm bảng vào cửa sổ
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -69,17 +94,13 @@ public class StudentManager {
         frame.setVisible(true);
     }
 
-    
-    private void deleteStudent() {
-        int selectedRow = studentTable.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(frame, "Vui lòng chọn sinh viên để xóa!");
-            return;
-        }
+   
+  
 
-        studentList.remove(selectedRow);
-        tableModel.removeRow(selectedRow);
-    }
+
+   
+
+    
 
     public static void main(String[] args) {
         new StudentManager();
@@ -121,6 +142,9 @@ class Student {
         this.className = className;
     }
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
