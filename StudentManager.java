@@ -2,12 +2,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-
-
-
+//dangnhan
+//vu
+//ccc
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
 
 public class StudentManager {
     private JFrame frame;
@@ -15,7 +18,7 @@ public class StudentManager {
     private JTable studentTable;
     private ArrayList<Student> studentList;
     private DefaultTableModel tableModel;
-
+//test lan 2
     public StudentManager() {
         studentList = new ArrayList<>();
         frame = new JFrame("Quản Lý Sinh Viên");
@@ -47,11 +50,15 @@ public class StudentManager {
         tableModel = new DefaultTableModel(columnNames, 0);
         studentTable = new JTable(tableModel);
 
+<<<<<<< HEAD
+     
+=======
 
 
         
 
 
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
       
 
      
@@ -95,7 +102,6 @@ public class StudentManager {
 
     
 
-
     public static void main(String[] args) {
         new StudentManager();
     }
@@ -136,3 +142,9 @@ class Student {
         this.className = className;
     }
 }
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> branch 'main' of https://github.com/dinhvune12/bainhom.git
